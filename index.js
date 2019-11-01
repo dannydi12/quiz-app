@@ -56,3 +56,66 @@ const QUESTIONS = [
         correctAnswer: "\"Jeff who?\""
     }
 ]
+
+// Components For Renders
+function generateOptionHtml() {
+
+}
+
+
+// Rendering Functions
+function renderCounter() {
+    $('.js-counter').html(`Question: ${STORE.currentQuestion}/${QUESTIONS.length}`);
+    $('.score').html(`Score: ${STORE.correctAnswers}`);
+}
+
+function renderStartPage() {
+    $('.js-render').html(`
+    <h2>Start The Quiz</h2>
+    <p>Elon Musk has been pretty popular among the public lately, and that's great. But here's the problem: he's also gaining a lot of inauthentic bandwagons. 
+    This quiz was designed to weed out Elon Musk's #1 fans from the fake fans jumping in on the hype. 
+    So, do you think you can prove your worth? Give it a try!</p>
+    <button class = "js-start">Start</button>
+    `);
+    renderCounter();
+}
+
+function renderQuestionPage() {
+    // currentQuestion for me
+}
+
+// Event listeners
+function handleStart() {
+    $('.js-render').on('click', '.js-start', function (event) {
+        renderQuestionPage();
+    });
+}
+
+function handleRestart() {
+    $('.js-render').on('click', '.js-restart', function (event) {
+
+    });
+}
+
+function handleSubmit() {
+    $('.js-render').on('click', '.js-submit', function (event) {
+
+    });
+}
+
+function handleNext() {
+    $('.js-render').on('click', '.js-next', function (event) {
+
+    });
+}
+
+
+function main() {
+    renderStartPage(); //render but rest are listeners
+    handleStart();
+    handleRestart();
+    handleSubmit();
+    handleNext();
+}
+
+$(main);
