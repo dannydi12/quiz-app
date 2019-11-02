@@ -87,8 +87,12 @@ button:hover {
     display: block;
 }
 
-@media screen and (min-width: 300px) {
+@media screen and (max-width: 500px) {
     .title {
         font-size: 30px;
+    }
+
+    .counter {
+        margin-top: 0px;
     }
 }
