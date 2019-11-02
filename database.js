@@ -55,3 +55,59 @@ const QUESTIONS = [
         correctAnswer: "“Jeff who?”"
     }
 ]
+
+const INSULTS = [
+    {
+        message: "Do you even know who Elon is?", 
+        image: "./images/confused-jeff.jpeg",
+        alt: "Jeff Bezos looking confused"
+    },
+    {
+        message: "You call yourself a fanboy?", 
+        image: "./images/do-you-even-know.jpg",
+        alt: "Elon Musk looking confused"
+    },
+    {
+        message: "I think Elon would disapprove...", 
+        image: "./images/disapprove.jpeg",
+        alt: "Sad Elon Musk face"
+    },
+    {
+        message: "Crash and burned...", 
+        image: "./images/crash.jpeg",
+        alt: "Falcon 9 rocket crashing"
+    },
+    {
+        message: "What do you think life would be like if you actually knew the answer?", 
+        image: "./images/what-do-you-think.jpeg",
+        alt: "Elon Musk pensively looking at his 'cigar'"
+    }
+];
+
+const COMPLEMENTS = [
+    {
+        message: "Dope! You got it right!", 
+        image: "./images/dope.jpeg",
+        alt: "Elon Musk smoking on the Joe Rogen show"
+    },
+    {
+        message: "That was out of this world!", 
+        image: "./images/starman.jpg",
+        alt: "Starman in Tesla Roadster orbiting Earth"
+    },
+    {
+        message: "You're on fire!", 
+        image: "./images/on-fire.jpg",
+        alt: "Elon Musk holding and firing the Boring Company's 'Not a Flamethrower'"
+    },
+    {
+        message: "You did it!", 
+        image: "./images/you-did-it.jpg",
+        alt: "Elon Musk dancing after founding SpaceX"
+    },
+    {
+        message: "Nice!", 
+        image: "./images/nice.jpg",
+        alt: "Elon Musk laughing at a dead deer on Pew Die Pie's meme review"
+    }
+];

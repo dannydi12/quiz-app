@@ -1,6 +1,6 @@
 // Components For Renders
 function generateOptionHtml(answerIndex) {
-    let allAnswers = QUESTIONS[STORE.currentQuestionIndex].answers; 
+    const allAnswers = QUESTIONS[STORE.currentQuestionIndex].answers; 
     return `
         <label for="${answerIndex}">
             <input type="radio" name="answer" id="${answerIndex}" value="${allAnswers[answerIndex]}" required/>
@@ -9,32 +9,36 @@ function generateOptionHtml(answerIndex) {
 }
 
 function generateAllOptionsHtml() {
-    let arrayOfOptions = QUESTIONS[STORE.currentQuestionIndex].answers;
+    const arrayOfOptions = QUESTIONS[STORE.currentQuestionIndex].answers;
     return arrayOfOptions.map((option, i) => generateOptionHtml(i)).join('');
 }
 
 function wrongFeedback() {
-    // Make array of insults and randomly insert them, same with right
+    const feedbackIndex = Math.floor(Math.random() * Math.floor(INSULTS.length));
+
     return `
     <header>
-        <h2>Oof, that's wrong.</h2>
+        <h2 class="feedback-title">${INSULTS[feedbackIndex].message}</h2>
     </header>
-    <p>The correct answer was: ${QUESTIONS[STORE.currentQuestionIndex].correctAnswer}</p>
+    <img class="feedback-image" src="${INSULTS[feedbackIndex].image}" alt="${INSULTS[feedbackIndex].alt}">
+    <p class="wrong-feedback">The correct answer was: ${QUESTIONS[STORE.currentQuestionIndex].correctAnswer}</p>
     <button class = "next-button js-next">Next</button>`
 }
 
 function rightFeedback() {
     STORE.correctAnswers++;
+    const feedbackIndex = Math.floor(Math.random() * Math.floor(INSULTS.length));
+
     return `
     <header>
-        <h2>Elon approves!</h2>
+        <h2 class="feedback-title">${COMPLEMENTS[feedbackIndex].message}</h2>
     </header>
-    <img src="happy-image" alt>
+    <img class="feedback-image wrong-image" src="${COMPLEMENTS[feedbackIndex].image}" alt="${COMPLEMENTS[feedbackIndex].alt}">
     <button class = "next-button js-next">Next</button>`
 }
 
 function isCorrect(givenAnswer) {
-    let correctAnswer = QUESTIONS[STORE.currentQuestionIndex].correctAnswer;
+    const correctAnswer = QUESTIONS[STORE.currentQuestionIndex].correctAnswer;
     return givenAnswer === correctAnswer;
 }
 
@@ -47,11 +51,11 @@ function renderCounter() {
 function renderStartPage() {
     $('.js-render').html(`
     <header>
-        <h2>Start The Quiz</h2>
+        <h2 class="feedback-title">Start The Quiz</h2>
     </header>
     <p>Elon Musk has been pretty popular among the public lately, and that's great. But here's the problem: he's also gaining a lot of inauthentic bandwagons. 
     This quiz was designed to weed out Elon Musk's #1 fans from the fake fans jumping in on the hype. 
-    Do you think you can prove your worth? Give it a try!</p>
+    </p><p>Do you think you can prove your worth? Give it a try!</p>
     <button type="button" class = "start-button js-start">Start</button>
     `);
     $('.score').html('');
@@ -60,7 +64,7 @@ function renderStartPage() {
 
 function renderQuestionPage() {
     $('.js-render').html(`
-    <form role="form" accept-charset="UTF-8">
+    <form class="js-form" role="form">
         <fieldset>
             <legend>${QUESTIONS[STORE.currentQuestionIndex].question}</legend>
             ${generateAllOptionsHtml()}
@@ -71,17 +75,17 @@ function renderQuestionPage() {
 }
 
 function renderFeedbackPage(answer) {
-    let feedback = isCorrect(answer) ? rightFeedback() : wrongFeedback();
+    const feedback = isCorrect(answer) ? rightFeedback() : wrongFeedback();
     $('.js-render').html(feedback);
 }
 
 function renderFinalPage() {
     $('.js-render').html(`
     <header>
-        <h2>You Finished The Quiz!</h2>
+        <h2 class="feedback-title">You Finished The Quiz!</h2>
     </header>
-    <p>So? Do you think you're still Elon's #1 fan? If this test made you feel insecure about your Elon Musk knowledge base, give the text another try!</p>
-    <button type="button" class = "restart-button js-restart">Restart</button>
+    <p>So? Do you think you're still Elon's #1 fan? If this test made you feel insecure about your Elon Musk knowledge base, give the test another try!</p>
+    <button type="button" class="restart-button js-restart">Restart</button>
     `);
 }
 
@@ -101,10 +105,10 @@ function handleRestart() {
 }
 
 function handleSubmit() {
-    $('.js-render').on('click', '.js-submit', function (event) {
-        // event.preventDefault();
+    $('.js-render').on('submit', '.js-form', function (event) {
+        event.preventDefault();
 
-        let answer = $('input[name=answer]:checked', 'form').val();
+        const answer = $('input[name=answer]:checked', 'form').val();
         renderFeedbackPage(answer);
         renderCounter();
         STORE.currentQuestionIndex++;
@@ -113,7 +117,7 @@ function handleSubmit() {
 
 function handleNext() {
     $('.js-render').on('click', '.js-next', function (event) {
-        if(STORE.currentQuestionIndex < 5) {
+        if(STORE.currentQuestionIndex < QUESTIONS.length) {
             renderQuestionPage();
         }
         else {
