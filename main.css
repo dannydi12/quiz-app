@@ -7,7 +7,7 @@ body {
 
 main {
     width: 80%;
-    margin: 0 auto;;
+    margin: 0 auto;
 }
 
 .title {
@@ -85,4 +85,10 @@ button:hover {
 .next-button {
     margin: 0 auto;
     display: block;
+}
+
+@media screen and (min-width: 300px) {
+    .title {
+        font-size: 30px;
+    }
 }
