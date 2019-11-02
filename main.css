@@ -32,7 +32,6 @@ main {
 
 .wrong-image {
     margin-bottom: 25px;
-    /* border: 2px solid black; */
 }
 
 p {
@@ -47,8 +46,7 @@ p {
 }
 
 .content-box {
-    border: 3px solid black;
-    /* border-radius: 5px; */
+    border: 3px solid #222831;
     padding: 30px;
     max-width: 600px;
     margin: 0 auto;
@@ -76,7 +74,8 @@ button {
 }
 
 button:hover {
-    background-color: #00adb5;
+    background-color: #222831; 
+    color: #eeeeee;
 }
 
 .submit-button {
@@ -87,5 +86,3 @@ button:hover {
     margin: 0 auto;
     display: block;
 }
-
-/* pastel blue color scheme pls */
